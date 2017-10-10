@@ -42,17 +42,6 @@ After doing this add the following line to your the ```mix``` in ```webpack.mix.
 ```
 
 
-## IMPORTANT
-Configure your ```.env``` file with your Pusher Key and go to ```vendor/frutdev/laravchat/src/resources/js/bootstrap.js``` and modify ```YOUR_APP_KEY``` and ```YOUR_APP_CLUSTER``` with the corresponding pusher key and cluster.
-
-
-In ```config/broadcasting.php``` add the following to the ```options``` in ```pusher```
-
-```
-'cluster' => 'us2',  //OR YOUR OWN CLUSTER
-'encrypted' => true,
-```
-
 If you are using ```Vue.js``` in your aplication this might be a little tricky but I will look into how to merge my file with ```js/app.js```
 
 Within your ```resources/views/layouts/app.blade.php``` 
@@ -80,9 +69,22 @@ Run
 npm run dev
 ```
 
+## IMPORTANT
+Configure your ```.env``` file with your Pusher Key and go to ```resources/assets/laravchatjs/bootstrap.js``` and modify ```YOUR_APP_KEY``` and ```YOUR_APP_CLUSTER``` with the corresponding pusher key and cluster.
+
+
+In ```config/broadcasting.php``` add the following to the ```options``` in ```pusher```
+
+```
+'cluster' => 'us2',  //OR YOUR OWN CLUSTER
+'encrypted' => true,
+```
 ALMOST THERE!
 
-Uncomment ```App\Providers\BroadcastServiceProvider::class``` provider within ```config/app.php```
+Uncomment the following line in ```config/app.php```
+```
+App\Providers\BroadcastServiceProvider::class
+``` 
 
 This package assumes your User model is in ```App\User```
 Add to your User model ```UserTrait``` so it should look like this:
