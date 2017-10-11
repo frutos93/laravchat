@@ -24,7 +24,7 @@ composer require nesbot/carbon
 ```
 
 ## IMPORTANT
-Configure your ```.env``` file with your Pusher Key and go to ```resources/assets/laravchatjs/bootstrap.js``` and modify ```YOUR_APP_KEY``` and ```YOUR_APP_CLUSTER``` with the corresponding pusher key and cluster.
+Configure your ```.env``` file with your Pusher Key and go to ```vendor/frutdev/laravchat/src/resources/js/bootstrap.js``` and modify ```YOUR_APP_KEY``` and ```YOUR_APP_CLUSTER``` with the corresponding pusher key and cluster.
 
 
 In ```config/broadcasting.php``` add the following to the ```options``` in ```pusher```
