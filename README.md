@@ -101,6 +101,8 @@ php artisan serve
 
 Go to your localhost and enter ```/chat``` and you'll be able to chat with any user
 
+## IF YOU JUST OPENED THE ```/chat``` WINDOW YOU NEED TO CLICK IN THE CONVERSATION BEFORE WRITING. WILL FIX THIS SOON.
+
 ## Versioning
 
 V 1.0.0
