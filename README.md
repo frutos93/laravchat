@@ -1,6 +1,10 @@
 # Laravchat
 
-Laravchat is a real-time chat package that will enable logged in users in an application to start conersations with other users and chat in real-time for Laravel 5.4+
+Laravchat is a real-time chat package that will enable logged in users in an application to start conersations with other users and chat in real-time for Laravel 5.4+.
+This package works with Laravel, Vuejs, Pusher and Laravel Echo.
+
+##Prerequisite
+You will need to have Pusher keys. Go to pusher.com and register for free, create an app and you will get your keys for the package.
 
 ## Installing
 
