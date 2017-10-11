@@ -20,7 +20,7 @@ class ChatController extends Controller {
 	 */
 	public function getIndex() {
 		if (!Auth::check()) {
-			return view('/');
+			return view('home');
 		}
 		return view('laravchat::index');
 	}
