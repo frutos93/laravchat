@@ -1,7 +1,6 @@
 {
     "name": "frutdev/laravchat",
     "description": "Laravel real-time chat application",
-    "type": "project",
     "authors": [
     {
         "name": "Carlos Frutos",

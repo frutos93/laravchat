@@ -11,7 +11,7 @@ You will need to have Pusher keys. Go to pusher.com and register for free, creat
 
 To install the package just run
 ```
-composer require frutdev/laravchat v1.0.0
+composer require frutdev/laravchat
 ```
 
 After this you'll have to have some things, follow these instructions:
@@ -57,28 +57,22 @@ After doing this add the following line to your the ```mix``` in ```webpack.mix.
 .js('resources/assets/laravchatjs/laravchat.js', 'public/js')
 ```
 
-
-If you are using ```Vue.js``` in your aplication this might be a little tricky but I will look into how to merge my file with ```js/app.js```
-
-Within your ```resources/views/layouts/app.blade.php``` 
-
 Add on top
 ```
 <link href="{{ asset('css/laravchat.css') }}" rel="stylesheet">
 ```
 
-And on the bottom remove
+And on the bottom add
 
 ```
-<script src="{{ asset('js/app.js') }}"></script>
+	<div id="chat">
+        @yield('chat')
+    </div>
+    <!-- Scripts -->
+    <script src="{{ asset('js/laravchat.js') }}"></script>
 ```
-
-and add
-
-```
-<script src="{{ asset('js/laravchat.js') }}"></script>
-```
-
+Note that this ```<div id="chat></div>```will be outside your default ```<div id=app></div>``` which surrounds all your application content.
+	
 
 ALMOST THERE!
 
@@ -104,9 +98,8 @@ php artisan migrate
 php artisan serve
 ```
 
-Go to your localhost and enter ```/chat``` and you'll be able to chat with any user
+Go to your localhost and enter ```/chat``` and you'll be able to create chats with any user.
 
-## IF YOU JUST OPENED THE ```/chat``` WINDOW YOU NEED TO CLICK IN THE CONVERSATION BEFORE WRITING. WILL FIX THIS SOON.
 
 ## Versioning
 
@@ -123,3 +116,7 @@ V 1.0.0
 * First package so if there are things that can be upgraded for installation please tell me.
 * Still more things to come and upgrade such as conversation within more than 2 people, add people to conversation and more.
 
+## TODO
+* Add emojis
+* Conversations between more than 2 users
+* Any other suggestion?

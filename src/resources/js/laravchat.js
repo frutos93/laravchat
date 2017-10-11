@@ -20,8 +20,8 @@ Vue.component('laravchat-composer', require('./components/LaravchatComposer.vue'
 Vue.component('laravchat-add', require('./components/LaravchatAdd'));
 Vue.component('laravchat-thread', require('./components/LaravchatThread.vue'));
 
-const app = new Vue({
-    el: '#app',
+const chat = new Vue({
+    el: '#chat',
     data: {
         messages: [],
         threads: [],
@@ -46,6 +46,12 @@ const app = new Vue({
                 message: message.message,
             });
 
+        },
+        createThread(id) {
+            this.actualthread = id.id;
+            axios.get('/' + this.actualthread + '/messages').then(response => {
+                this.messages = response.data;
+            });
         }
     },
     created() {
@@ -63,6 +69,17 @@ const app = new Vue({
                     } else {
                         this.threads.find(x => x.id === e.message.thread_id).new = true;
                     }
+
+                    if (!('Notification' in window)) {
+                        alert('Web Notification is not supported');
+                        return;
+                    }
+
+                    Notification.requestPermission(permission => {
+                        let notification = new Notification('New post alert!', {
+                            body: "You got a new message in your chat " + this.threads.find(x => x.id === e.message.thread_id).title + ".", // content for the alert
+                        });
+                    });
                 })
                 .listen('ThreadPosted', (e) => {
                     this.threads.push({

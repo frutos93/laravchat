@@ -7,7 +7,7 @@
 		 	New Message
 	 	</button>
 	</div>
-	<div id="addUser" class="modal fade" role="dialog">
+	<div id="addUser" class="modal" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -36,7 +36,7 @@
 
 <script>
 export default {
-	props: ['threads'],
+	props: ['threads','actualthread', 'messages'],
 	data(){
 		return{
 			selectedUser: [],
@@ -56,6 +56,9 @@ export default {
 				}
 				else{
 					this.threads.push(response.data);
+					this.$emit('threadposted',{
+    					id:response.data.id, 
+    				});
 				}
 			});
 			$('#addUser').modal('hide');

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('content')
+@section('chat')
 <div class="main_section">
    <div class="container">
       <div class="chat_container">
@@ -13,7 +13,7 @@
 
          <div class="col-sm-9 message_section">
        <div class="row">
-       <laravchat-add :threads="threads"></laravchat-add>
+       <laravchat-add :threads="threads" :actualthread="actualthread" :messages="messages" v-on:threadposted="createThread"></laravchat-add>
        <laravchat-log :messages="messages" :currentuser="currentuser"></laravchat-log>
        <laravchat-composer v-on:messagesent="submitMessage"></laravchat-composer>
        </div>
