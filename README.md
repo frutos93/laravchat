@@ -23,6 +23,17 @@ This package uses ```Carbon``` package so make sure to run, if you don't have it
 composer require nesbot/carbon
 ```
 
+## IMPORTANT
+Configure your ```.env``` file with your Pusher Key and go to ```resources/assets/laravchatjs/bootstrap.js``` and modify ```YOUR_APP_KEY``` and ```YOUR_APP_CLUSTER``` with the corresponding pusher key and cluster.
+
+
+In ```config/broadcasting.php``` add the following to the ```options``` in ```pusher```
+
+```
+'cluster' => 'us2',  //OR YOUR OWN CLUSTER
+'encrypted' => true,
+```
+
 Run
 ```
 php artisan make:auth
@@ -54,7 +65,7 @@ Add on top
 And on the bottom remove
 
 ```
-<script src="{{ asset('js/laravchat.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 ```
 
 and add
@@ -64,21 +75,6 @@ and add
 ```
 
 
-Run
-```
-npm run dev
-```
-
-## IMPORTANT
-Configure your ```.env``` file with your Pusher Key and go to ```resources/assets/laravchatjs/bootstrap.js``` and modify ```YOUR_APP_KEY``` and ```YOUR_APP_CLUSTER``` with the corresponding pusher key and cluster.
-
-
-In ```config/broadcasting.php``` add the following to the ```options``` in ```pusher```
-
-```
-'cluster' => 'us2',  //OR YOUR OWN CLUSTER
-'encrypted' => true,
-```
 ALMOST THERE!
 
 Uncomment the following line in ```config/app.php```
@@ -98,6 +94,7 @@ class User extends Authenticatable {
 
 Run
 ```
+npm run dev
 php artisan migrate
 php artisan serve
 ```
