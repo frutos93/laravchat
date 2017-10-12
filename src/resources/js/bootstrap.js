@@ -48,7 +48,7 @@ window.Pusher = require('pusher-js');
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: 'cc24076be242e10346cf',
-    cluster: 'us2',
+    key: 'YOUR_PUSHER_KEY',
+    cluster: 'YOUR_PUSHER_CLUSTER',
     namespace: 'Frutdev.Laravchat.Events'
 });

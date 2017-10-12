@@ -29,14 +29,19 @@ composer require nesbot/carbon
 ```
 
 ## IMPORTANT
-Configure your ```.env``` file with your Pusher Key and go to ```vendor/frutdev/laravchat/src/resources/js/bootstrap.js``` and modify ```YOUR_APP_KEY``` and ```YOUR_APP_CLUSTER``` with the corresponding pusher key and cluster.
+
+Configure your ```.env``` file with your Pusher Key ```PUSHER_APP_ID```, ```PUSHER_APP_KEY```,```PUSHER_APP_SECRET```.
+
+Within the ```.env``` file also modify the ```BROADCAST_DRIVER``` field with ```pusher``` so it should look like this: ```BROADCAST_DRIVER=pusher```
+
+Go to ```vendor/frutdev/laravchat/src/resources/js/bootstrap.js``` and modify ```YOUR_APP_KEY``` and ```YOUR_APP_CLUSTER``` with the corresponding pusher key and cluster of your app
 
 
 In ```config/broadcasting.php``` add the following to the ```options``` in ```pusher```
 
 ```
 'cluster' => 'us2',  //OR YOUR OWN CLUSTER
-'encrypted' => true,
+'encrypted' => false,
 ```
 
 Run
@@ -57,7 +62,7 @@ After doing this add the following line to your the ```mix``` in ```webpack.mix.
 .js('resources/assets/laravchatjs/laravchat.js', 'public/js')
 ```
 
-Add on top
+Add on top of your ```resources/views/layouts/app.blade.php```
 ```
 <link href="{{ asset('css/laravchat.css') }}" rel="stylesheet">
 ```
@@ -65,11 +70,11 @@ Add on top
 And on the bottom add
 
 ```
-	<div id="chat">
-        @yield('chat')
-    </div>
-    <!-- Scripts -->
-    <script src="{{ asset('js/laravchat.js') }}"></script>
+<div id="chat">
+	@yield('chat')
+</div>
+<!-- Scripts -->
+<script src="{{ asset('js/laravchat.js') }}"></script>
 ```
 Note that this ```<div id="chat></div>```will be outside your default ```<div id=app></div>``` which surrounds all your application content.
 	

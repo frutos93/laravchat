@@ -22,8 +22,8 @@
     	</div>
       </div>
       <div class="modal-footer">
-      	<button type="button" class="btn btn-success" @click="createChat">Create Chat</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      	<a type="button" class="btn btn-success" @click="createChat" data-dismiss="modal" data-backdrop="false">Create Chat</a>
+        <button type="button" class="btn btn-default" data-dismiss="modal" data-backdrop="false">Close</button>
 
       </div>
     </div>
