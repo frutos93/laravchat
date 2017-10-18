@@ -19,9 +19,6 @@ class ChatController extends Controller {
 	 * @return view
 	 */
 	public function getIndex() {
-		if (!Auth::check()) {
-			return view('home');
-		}
 		return view('laravchat::index');
 	}
 
@@ -31,9 +28,6 @@ class ChatController extends Controller {
 	 * @return array
 	 */
 	public function getCurrentUser() {
-		if (!Auth::check()) {
-			return view('home');
-		}
 		return ['id' => Auth::user()->id, 'name' => Auth::user()->name];
 	}
 
@@ -43,9 +37,6 @@ class ChatController extends Controller {
 	 * @return array
 	 */
 	public function getUsers() {
-		if (!Auth::check()) {
-			return view('home');
-		}
 		return User::where('id', '!=', Auth::user()->id)->select('id', 'name')->get();
 	}
 
@@ -55,9 +46,6 @@ class ChatController extends Controller {
 	 * @return array
 	 */
 	public function postThreadMessage(Thread $thread) {
-		if (!Auth::check()) {
-			return view('home');
-		}
 		$user = Auth::user();
 		$usersInThread = $thread->users->where('id', '!=', $user->id);
 
@@ -87,9 +75,6 @@ class ChatController extends Controller {
 	 * @return array
 	 */
 	public function getThreads() {
-		if (!Auth::check()) {
-			return view('home');
-		}
 		$user = Auth::user();
 		$userThreads = [];
 		foreach ($user->threads as $thread) {
@@ -106,9 +91,6 @@ class ChatController extends Controller {
 	 * @return array
 	 */
 	public function postThread() {
-		if (!Auth::check()) {
-			return view('home');
-		}
 		$user = Auth::user();
 		$userToStartThreadWith = User::find(request()->get('user'));
 
@@ -136,9 +118,6 @@ class ChatController extends Controller {
 	 * @return array
 	 */
 	public function getThreadMessages(Thread $thread) {
-		if (!Auth::check()) {
-			return view('home');
-		}
 		$messages = $thread->messages;
 		$threadMessages = [];
 		$user = Auth::user();
