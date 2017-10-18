@@ -67,14 +67,25 @@ Add on top of your ```resources/views/layouts/app.blade.php```
 And on the bottom add
 
 ```
+
 <div id="chat">
 	@yield('chat')
 </div>
 <!-- Scripts -->
+
+<script>
+    window.Laravel = <?php echo json_encode([
+    	'PUSHER_APP_KEY' => 'PUSHER_APP_KEY',
+        'PUSHER_APP_CLUSTER' => 'PUSHER_APP_CLUSTER',
+    ]);
+    ?>
+    </script>
 <script src="{{ asset('js/laravchat.js') }}"></script>
 ```
-Note that this ```<div id="chat></div>```will be outside your default ```<div id=app></div>``` which surrounds all your application content.
-	
+
+
+Note that ```PUSHER_APP_KEY``` and ```PUSHER_APP_CLUSTER``` will be the same ones you put in your ```.env```
+The ```<div id="chat></div>```will be outside your default ```<div id=app></div>``` which surrounds all your application content.
 
 ALMOST THERE!
 
@@ -92,10 +103,6 @@ use Frutdev\Laravchat\Traits\UserTrait;
 class User extends Authenticatable {
 	use UserTrait;
 ```
-
-And lastly
-
-Go to ```resources/assets/laravchatjs/bootstrap.js``` and modify ```YOUR_APP_KEY``` and ```YOUR_APP_CLUSTER``` with the corresponding pusher key and cluster of your app
 
 Run
 ```

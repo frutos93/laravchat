@@ -48,7 +48,7 @@ window.Pusher = require('pusher-js');
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: 'YOUR_PUSHER_KEY',
-    cluster: 'YOUR_PUSHER_CLUSTER',
+    key: window.Laravel.PUSHER_APP_KEY,
+    cluster: window.Laravel.PUSHER_APP_CLUSTER,
     namespace: 'Frutdev.Laravchat.Events'
 });
