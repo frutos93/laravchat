@@ -34,9 +34,6 @@ Configure your ```.env``` file with your Pusher Key ```PUSHER_APP_ID```, ```PUSH
 
 Within the ```.env``` file also modify the ```BROADCAST_DRIVER``` field with ```pusher``` so it should look like this: ```BROADCAST_DRIVER=pusher```
 
-Go to ```vendor/frutdev/laravchat/src/resources/js/bootstrap.js``` and modify ```YOUR_APP_KEY``` and ```YOUR_APP_CLUSTER``` with the corresponding pusher key and cluster of your app
-
-
 In ```config/broadcasting.php``` add the following to the ```options``` in ```pusher```
 
 ```
@@ -96,6 +93,10 @@ class User extends Authenticatable {
 	use UserTrait;
 ```
 
+And lastly
+
+Go to ```resources/assets/laravchatjs/bootstrap.js``` and modify ```YOUR_APP_KEY``` and ```YOUR_APP_CLUSTER``` with the corresponding pusher key and cluster of your app
+
 Run
 ```
 npm run dev
@@ -103,7 +104,7 @@ php artisan migrate
 php artisan serve
 ```
 
-Go to your localhost and enter ```/chat``` and you'll be able to create chats with any user.
+Go to your localhost, login and enter ```/chat``` and you'll be able to create chats with any user.
 
 
 ## Versioning

@@ -28,7 +28,7 @@ class ChatController extends Controller {
 	 * @return array
 	 */
 	public function getCurrentUser() {
-		return ['id' => Auth::user()->id, 'name' => Auth::user()->name];
+		return response()->json(['id' => Auth::user()->id, 'name' => Auth::user()->name]);
 	}
 
 	/**
@@ -66,7 +66,7 @@ class ChatController extends Controller {
 			broadcast(new MessagePosted($message, $user, $userInThread));
 		}
 
-		return ['id' => $message->id, 'message' => $message->message, 'user_id' => $message->user_id, 'thread_id' => $thread->id];
+		return response()->json(['id' => $message->id, 'message' => $message->message, 'user_id' => $message->user_id, 'thread_id' => $thread->id]);
 	}
 
 	/**
@@ -82,7 +82,7 @@ class ChatController extends Controller {
 			$newMessage = $userThread->pivot->last_message > $userThread->pivot->last_seen;
 			array_push($userThreads, ['id' => $thread->id, 'title' => $thread->title, 'new' => $newMessage]);
 		}
-		return $userThreads;
+		return response()->json($userThreads);
 	}
 
 	/**
@@ -109,7 +109,7 @@ class ChatController extends Controller {
 
 		broadcast(new ThreadPosted($thread, $userToStartThreadWith));
 
-		return $newThread;
+		return response()->json($newThread);
 	}
 
 	/**
