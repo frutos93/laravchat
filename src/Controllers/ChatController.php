@@ -92,23 +92,33 @@ class ChatController extends Controller {
 	 */
 	public function postThread() {
 		$user = Auth::user();
-		$userToStartThreadWith = User::find(request()->get('user'));
+		$usersToStartThreadWith = request()->get('users');
 
 		$userThreads = $user->threads;
 		foreach ($userThreads as $thread) {
-			if ($userToStartThreadWith->threads->contains($thread)) {
+			$usersTotalInThread = $thread->users->count();
+			$count = 0;
+			foreach ($usersToStartThreadWith as $userInThread) {
+				$userInThread = User::find($userInThread);
+				if ($userInThread->threads->contains($thread)) {
+					$count++;
+				}
+			}
+			if ($usersTotalInThread == $count) {
 				return ['status' => 'DUPLICATE'];
 			}
 		}
 		$thread = new Thread;
-		$thread->title = $user->name . ", " . $userToStartThreadWith->name;
+		$thread->title = $user->name . ", ";
+		foreach ($usersToStartThreadWith as $userInThread) {
+			$userInThread = User::find($userInThread);
+			$thread->title = $thread->title . $userInThread->name . ", ";
+			$userInThread->threads()->save($thread);
+			broadcast(new ThreadPosted($thread, $userInThread));
+		}
 		$thread->save();
 		$user->threads()->save($thread);
-		$userToStartThreadWith->threads()->save($thread);
 		$newThread = ['id' => $thread->id, 'title' => $thread->title];
-
-		broadcast(new ThreadPosted($thread, $userToStartThreadWith));
-
 		return response()->json($newThread);
 	}
 

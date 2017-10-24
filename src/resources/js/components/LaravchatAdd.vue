@@ -18,7 +18,7 @@
       </div>
       <div class="modal-body">
       	<div  v-for="user in users">
-        <input type="radio"  :value="user.id" v-model="selectedUser"> {{user.name}}
+        	<input type="checkbox"  :value="user.id" v-model="selectedUsers"> {{user.name}}
     	</div>
       </div>
       <div class="modal-footer">
@@ -39,7 +39,7 @@ export default {
 	props: ['threads','actualthread', 'messages'],
 	data(){
 		return{
-			selectedUser: [],
+			selectedUsers: [],
 			users:[]
 		}
 	},
@@ -50,7 +50,7 @@ export default {
 	        });
 		},
 		createChat(){
-			axios.post('/thread',{user:this.selectedUser}).then(response=>{
+			axios.post('/thread',{users:this.selectedUsers}).then(response=>{
 				if(response.data.status){
 					alert('This chat alreadye exists');
 				}
